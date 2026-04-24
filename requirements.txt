@@ -1,0 +1,9 @@
+langchain
+langchain-community
+pypdf
+python-dotenv
+langchain-groq
+pinecone
+streamlit
+langchain-pinecone
+langchain-text-splitters
