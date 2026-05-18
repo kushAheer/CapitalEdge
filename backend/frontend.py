@@ -1,3 +1,4 @@
+# pyright: ignore [reportMissingImports]
 import streamlit as st
 import os
 import tempfile
