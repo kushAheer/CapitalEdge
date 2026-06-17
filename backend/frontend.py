@@ -2,6 +2,7 @@
 import streamlit as st
 import os
 import tempfile
+import uuid
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -262,9 +263,9 @@ hr { border-color: #e9ecef; }
 
 
 @st.cache_resource(show_spinner=False)
-def get_chatbot():
+def get_chatbot(user_id: str):
     from ai import ChatBot
-    return ChatBot()
+    return ChatBot(user_id)
 
 
 
@@ -276,6 +277,8 @@ if "doc_name" not in st.session_state:
     st.session_state.doc_name = ""
 if "doc_size" not in st.session_state:
     st.session_state.doc_size = ""
+if "user_id" not in st.session_state:
+    st.session_state.user_id = str(uuid.uuid4())
 
 
 
@@ -305,7 +308,7 @@ with st.sidebar:
     if uploaded_file and not st.session_state.doc_loaded:
         with st.spinner("Indexing document…"):
             try:
-                bot = get_chatbot()
+                bot = get_chatbot(st.session_state.user_id)
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
                     tmp.write(uploaded_file.read())
                     tmp_path = tmp.name
@@ -338,6 +341,8 @@ with st.sidebar:
         st.divider()
 
         if st.button("🗑 Clear & start over", use_container_width=True):
+            bot = get_chatbot(st.session_state.user_id)
+            bot.clear_user_data()
             st.session_state.messages = []
             st.session_state.doc_loaded = False
             st.session_state.doc_name = ""
@@ -431,7 +436,7 @@ if st.session_state.doc_loaded:
         st.session_state.messages.append({"role": "user", "content": query})
         with st.spinner("Thinking…"):
             try:
-                bot = get_chatbot()
+                bot = get_chatbot(st.session_state.user_id)
                 answer = bot.chat(query)
                 st.session_state.messages.append({"role": "assistant", "content": answer})
             except Exception as e:

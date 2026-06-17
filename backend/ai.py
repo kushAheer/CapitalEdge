@@ -5,9 +5,9 @@ from langchain_groq import ChatGroq
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from pinecone import Pinecone, ServerlessSpec
-# pyright: ignore [reportMissingImports]
+
 from langchain_pinecone import PineconeVectorStore
-# pyright: ignore [reportMissingImports]
+
 from langchain_pinecone import PineconeEmbeddings
 
 
@@ -41,8 +41,6 @@ class ChatBot:
         if not user_id or not user_id.strip():
             raise ValueError("user_id must be a non-empty string.")
 
-        # Sanitize user_id: Pinecone namespaces allow alphanumerics, hyphens,
-        # and underscores. Replace anything else to avoid API errors.
         self.namespace = "user_" + "".join(
             c if c.isalnum() or c in "-_" else "_" for c in user_id.strip()
         )
@@ -74,13 +72,10 @@ class ChatBot:
 
         index = self.pinecone.Index(idx_name)
 
-        # Scope the vector store to this user's namespace.
-        # Every upsert and query will be isolated to self.namespace,
-        # so users cannot read each other's documents.
         self.vectorStore = PineconeVectorStore(
             embedding=self.embeddings,
             index=index,
-            namespace=self.namespace,   # <-- per-user isolation
+            namespace=self.namespace, 
         )
 
         self.chat_history = []
@@ -150,15 +145,20 @@ Rules:
     def embed_and_store(self, pdf: str = ""):
         if not self.documents:
             raise ValueError("No document chunks found. Load and split a readable PDF before embedding.")
-        # Documents are stored under self.namespace automatically
-        # because the vectorStore was constructed with namespace=self.namespace.
+        
         self.vectorStore.add_documents(self.documents)
         return True
 
     def chat(self, query: str):
-        # Retrieval is also scoped to self.namespace — users only see their own data.
+        
         retriever = self.vectorStore.as_retriever(search_kwargs={"k": 4})
         relevant_docs = retriever.invoke(query)
+
+        if not relevant_docs:
+            raise ValueError(
+                "No uploaded statement found for this user_id. "
+                "Upload a PDF first and reuse the same user_id for chat."
+            )
 
         context = ""
         for doc in relevant_docs:

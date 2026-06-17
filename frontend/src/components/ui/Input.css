@@ -1,0 +1,67 @@
+.cw-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+.cw-input-full {
+  width: 100%;
+}
+
+.cw-input-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 7px;
+  display: block;
+  letter-spacing: -0.01em;
+}
+
+.cw-input-container {
+  position: relative;
+}
+
+.cw-input {
+  width: 100%;
+  padding: 11px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.cw-input::placeholder {
+  color: var(--text-muted);
+}
+
+.cw-input:hover {
+  border-color: #d4cdc4;
+  background-color: var(--bg-surface);
+}
+
+.cw-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background-color: var(--bg-surface);
+  box-shadow: 0 0 0 3px var(--border-focus);
+}
+
+.cw-input-error-state {
+  border-color: var(--error);
+}
+
+.cw-input-error-state:focus {
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+  border-color: var(--error);
+}
+
+.cw-input-error-text {
+  color: var(--error);
+  font-size: 13px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}

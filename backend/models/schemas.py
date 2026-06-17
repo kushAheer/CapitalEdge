@@ -4,12 +4,12 @@ from pydantic import BaseModel, EmailStr, Field
 
 class UserLogin(BaseModel):
     email: EmailStr
-    password: str = Field(min_length=1)
+    password: str 
 
 class UserRegister(BaseModel):
-    name: str = Field(min_length=1)
+    name: str
     email: EmailStr
-    password: str = Field(min_length=6)
+    password: str 
 
 class UserResponse(BaseModel):
     user_id: str
