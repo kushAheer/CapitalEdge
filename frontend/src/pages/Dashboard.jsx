@@ -28,26 +28,7 @@ const Dashboard = () => {
           <DocumentUpload compact />
         </div>
 
-        <div className="rail-footer">
-          <div className="rail-tip">
-            <Sparkles size={15} />
-            <p>Answers are grounded only in your uploaded PDF — not the open web.</p>
-          </div>
-          <div className="rail-steps">
-            <div className="rail-step">
-              <span className="rail-step-num">1</span>
-              <span>Upload PDF</span>
-            </div>
-            <div className="rail-step">
-              <span className="rail-step-num">2</span>
-              <span>Wait for indexing</span>
-            </div>
-            <div className="rail-step">
-              <span className="rail-step-num">3</span>
-              <span>Ask anything</span>
-            </div>
-          </div>
-        </div>
+        
       </aside>
 
       <section className="dashboard-workspace">

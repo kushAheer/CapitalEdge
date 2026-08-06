@@ -1,0 +1,111 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 1591 >>
+stream
+BT
+/F1 11 Tf
+50 780 Td
+14 TL
+(CoinWise Demo Financial Report) Tj
+T* (Sample data only - not a real bank statement) Tj
+T* (Report period: January 2026 to March 2026) Tj
+T* (Currency: INR) Tj
+T* () Tj
+T* (Executive Summary) Tj
+T* (Opening summary total: INR 75,000.00) Tj
+T* (Total income: INR 185,000.00) Tj
+T* (Total expenses: INR 121,850.00) Tj
+T* (Net surplus: INR 63,150.00) Tj
+T* (Closing summary total: INR 138,150.00) Tj
+T* () Tj
+T* (Monthly Overview) Tj
+T* (Month        Income        Expenses      Net Change) Tj
+T* (Jan 2026     INR 60,000    INR 38,450    INR 21,550) Tj
+T* (Feb 2026     INR 62,500    INR 41,900    INR 20,600) Tj
+T* (Mar 2026     INR 62,500    INR 41,500    INR 21,000) Tj
+T* () Tj
+T* (Expense Category Summary) Tj
+T* (Housing: INR 45,000.00) Tj
+T* (Food and groceries: INR 23,800.00) Tj
+T* (Transport: INR 12,750.00) Tj
+T* (Utilities: INR 9,600.00) Tj
+T* (Subscriptions: INR 5,700.00) Tj
+T* (Healthcare: INR 6,500.00) Tj
+T* (Shopping: INR 11,200.00) Tj
+T* (Other expenses: INR 7,300.00) Tj
+T* () Tj
+T* (Income Sources) Tj
+T* (Salary credits: INR 180,000.00) Tj
+T* (Interest income: INR 2,400.00) Tj
+T* (Refunds and reimbursements: INR 2,600.00) Tj
+T* () Tj
+T* (Recurring Expenses) Tj
+T* (Office workspace subscription: INR 1,200.00 monthly) Tj
+T* (Mobile and internet: INR 1,800.00 monthly) Tj
+T* (Streaming and software tools: INR 1,900.00 monthly) Tj
+T* (Insurance premium: INR 2,500.00 monthly) Tj
+T* () Tj
+T* (Demo Entries) Tj
+T* (2026-01-01 | Opening summary total | Balance | INR 75,000.00) Tj
+T* (2026-01-05 | Salary credit | Income | INR 60,000.00) Tj
+ET
+endstream
+endobj
+3 0 obj
+<< /Length 1190 >>
+stream
+BT
+/F1 11 Tf
+50 780 Td
+14 TL
+(2026-01-06 | Apartment rent | Housing | INR -15,000.00) Tj
+T* (2026-01-08 | Grocery store | Food and groceries | INR -7,900.00) Tj
+T* (2026-01-12 | Metro and cab rides | Transport | INR -4,150.00) Tj
+T* (2026-01-18 | Electricity and water | Utilities | INR -3,200.00) Tj
+T* (2026-02-05 | Salary credit | Income | INR 62,500.00) Tj
+T* (2026-02-06 | Apartment rent | Housing | INR -15,000.00) Tj
+T* (2026-02-10 | Grocery store | Food and groceries | INR -8,200.00) Tj
+T* (2026-02-14 | Medical consultation | Healthcare | INR -3,800.00) Tj
+T* (2026-02-22 | Software subscription | Subscriptions | INR -1,900.00) Tj
+T* (2026-03-05 | Salary credit | Income | INR 62,500.00) Tj
+T* (2026-03-06 | Apartment rent | Housing | INR -15,000.00) Tj
+T* (2026-03-09 | Grocery store | Food and groceries | INR -7,700.00) Tj
+T* (2026-03-16 | Online shopping | Shopping | INR -5,400.00) Tj
+T* (2026-03-25 | Interest credit | Income | INR 2,400.00) Tj
+T* (2026-03-31 | Closing summary total | Balance | INR 138,150.00) Tj
+T* () Tj
+T* (Dashboard Hints) Tj
+T* (Recommended charts: income vs expenses by month, expenses by category, net surplus trend, recurring expenses list.) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 3 0 R >>
+endobj
+6 0 obj
+<< /Type /Pages /Kids [4 0 R 5 0 R] /Count 2 >>
+endobj
+7 0 obj
+<< /Type /Catalog /Pages 6 0 R >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000001722 00000 n 
+0000002964 00000 n 
+0000003090 00000 n 
+0000003216 00000 n 
+0000003279 00000 n 
+trailer
+<< /Size 8 /Root 7 0 R >>
+startxref
+3328
+%%EOF

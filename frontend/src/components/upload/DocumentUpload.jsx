@@ -108,14 +108,18 @@ const DocumentUpload = ({ onUploadSuccess, onClearSuccess, compact = false }) =>
       });
 
       if (!response.ok) {
-        throw new Error('Failed to clear document');
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Failed to clear document');
       }
 
       setFile(null);
       setUploadStatus(null);
+      setErrorMessage('');
       if (onClearSuccess) onClearSuccess();
     } catch (error) {
       console.error('Clear error:', error);
+      setErrorMessage(error.message);
+      setUploadStatus('error');
     } finally {
       setIsClearing(false);
     }

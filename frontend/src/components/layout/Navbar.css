@@ -24,6 +24,10 @@
   padding: 0 28px;
 }
 
+.navbar-inner--guest {
+  grid-template-columns: 1fr auto;
+}
+
 /* ── Brand ── */
 .navbar-brand {
   display: flex;

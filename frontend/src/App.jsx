@@ -8,7 +8,6 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import './App.css';
 
-// Protected Route component
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
   
@@ -23,7 +22,7 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-// Public Route component (redirects to dashboard if logged in)
+
 const PublicRoute = ({ children }) => {
   const { user, loading } = useAuth();
   
@@ -69,7 +68,6 @@ function AppRoutes() {
               </ProtectedRoute>
             } 
           />
-          {/* Catch all route */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

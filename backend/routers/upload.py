@@ -5,7 +5,7 @@ from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 
 from models.schemas import ErrorResponse, Response, UploadResponse
 
-from session import get_chatbot
+from session import clear_chatbot, get_chatbot
 
 router = APIRouter(tags=["Upload"])
 
@@ -62,8 +62,10 @@ def clear_file(user_id: str = Form(...)):
         if not user_id or not user_id.strip():
             raise HTTPException(status_code=400, detail="user_id is required.")
 
-        chatbot = get_chatbot(user_id)
-        chatbot.clear_user_data()
+        cleared = clear_chatbot(user_id)
+
+        if not cleared:
+            return Response(message="No active uploaded document found to clear.")
 
         return Response(message="Uploaded document data cleared.")
 

@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is stored in localStorage on initial load
+    
     const storedUser = localStorage.getItem('cw_user');
     if (storedUser) {
       try {

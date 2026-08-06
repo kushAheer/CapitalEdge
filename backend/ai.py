@@ -81,15 +81,15 @@ class ChatBot:
         self.chat_history = []
 
         self.system_prompt = """
-You are a financial analyst assistant. Answer questions strictly using the bank statement context provided.
+    You are a financial analyst assistant. Answer questions using only the provided bank statement context.
 
-Rules:
-- Always include amounts with currency symbols.
-- If asked about totals, sum up the relevant transactions shown in context.
-- If the answer is not in the context, say "This information is not in the provided statement."
-- Never make up transaction details, balances, or dates.
-- Format amounts consistently (e.g. ₹1,24,500 or $1,245.00).
-"""
+    Rules:
+    - Do not use outside knowledge.
+    - If the question asks for totals, add only values that appear in the context.
+    - If the question asks about amounts, keep currency symbols and formatting consistent.
+    - If the answer is not present in the context, say exactly: "This information is not in the provided statement."
+    - Do not invent transaction details, balances, names, or dates.
+    """
 
         self.rag_prompt = ChatPromptTemplate.from_messages(
             [
@@ -150,19 +150,29 @@ Rules:
         return True
 
     def chat(self, query: str):
-        
-        retriever = self.vectorStore.as_retriever(search_kwargs={"k": 4})
+        retriever = self.vectorStore.as_retriever(
+            search_type="mmr",
+            search_kwargs={"k": 8, "fetch_k": 20}
+        )
         relevant_docs = retriever.invoke(query)
 
         if not relevant_docs:
             raise ValueError(
-                "No uploaded statement found for this user_id. "
-                "Upload a PDF first and reuse the same user_id for chat."
+                "No uploaded statement found for this User. "
+                "Upload a PDF first and then ask questions about it."
             )
 
-        context = ""
-        for doc in relevant_docs:
-            context += doc.page_content + "\n\n"
+        context = "\n\n".join(
+            doc.page_content.strip()
+            for doc in relevant_docs
+            if doc.page_content and doc.page_content.strip()
+        )
+
+        if not context:
+            raise ValueError(
+                "No readable statement context was retrieved. "
+                "Try uploading a text-based PDF and ask again."
+            )
 
         chain = self.rag_prompt | self.llmModel
         response = chain.invoke(

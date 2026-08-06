@@ -22,7 +22,7 @@ const Navbar = () => {
 
   return (
     <header className={`navbar ${isAuthPage ? 'navbar--auth' : ''}`}>
-      <div className="navbar-inner">
+      <div className={`navbar-inner ${user ? '' : 'navbar-inner--guest'}`}>
         <Link to="/" className="navbar-brand">
           <div className="navbar-logo">
             <Shield size={20} />

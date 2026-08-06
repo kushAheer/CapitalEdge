@@ -5,7 +5,7 @@ import './ChatInterface.css';
 
 const ChatInterface = ({ embedded = false }) => {
   const [messages, setMessages] = useState([
-    { id: '1', role: 'assistant', content: 'Hello! Upload a document above, and I can answer any questions you have about it.' }
+    { id: '1', role: 'assistant', content: 'Hello! Upload a document , and I can answer any questions you have about it.' }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +28,6 @@ const ChatInterface = ({ embedded = false }) => {
     const userMessage = input.trim();
     setInput('');
     
-    // Add user message immediately
     const newUserMsg = { id: Date.now().toString(), role: 'user', content: userMessage };
     setMessages(prev => [...prev, newUserMsg]);
     setIsLoading(true);
@@ -46,7 +45,8 @@ const ChatInterface = ({ embedded = false }) => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to get response');
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Failed to get response');
       }
 
       const data = await response.json();
@@ -62,7 +62,7 @@ const ChatInterface = ({ embedded = false }) => {
         { 
           id: (Date.now() + 1).toString(), 
           role: 'assistant', 
-          content: 'Sorry, I encountered an error. Have you uploaded a document yet? Please try again.',
+          content: error.message || 'Sorry, I encountered an error. Have you uploaded a document yet? Please try again.',
           isError: true
         }
       ]);
